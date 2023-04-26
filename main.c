@@ -32,6 +32,8 @@ struct optional_slice
 
 struct Queue * readyQ;
 
+// function headers that needed to be defined at the top of the program to use them before their location in the code
+
 struct Interpreter* global_interpreter; // Interpreter for global scope
 
 bool consumeBracket(const char *str, struct Interpreter *_interpreter);
@@ -1050,6 +1052,7 @@ void parseFunction(bool effects, struct Interpreter *_interpreter)
     insert_function(function_name, func);
 }
 
+// parses while loops
 void parseWhile(bool effects, struct Interpreter *_interpreter)
 {
     char const *current = _interpreter->current;
@@ -1077,6 +1080,7 @@ void parseWhile(bool effects, struct Interpreter *_interpreter)
     }
 }
 
+// parses for loops
 void parseFor(bool effects, struct Interpreter *_interpreter)
 {
     char const *current = _interpreter->current;
@@ -1089,7 +1093,7 @@ void parseFor(bool effects, struct Interpreter *_interpreter)
             fail(_interpreter);
         }
 
-        struct optional_slice variableName = consume_identifier(_interpreter);
+        struct optional_slice variableName = consume_identifier(_interpreter); // checks for initializes of variable incrementer
 
         if (!variableName.present || !consume("=", _interpreter)) {
             fail(_interpreter);
@@ -1097,7 +1101,7 @@ void parseFor(bool effects, struct Interpreter *_interpreter)
 
         uint64_t variableData = 0;
 
-        if (contains(variableName.value, _interpreter)) {
+        if (contains(variableName.value, _interpreter)) { 
             variableData = get_value(variableName.value, _interpreter).isInt;
 
             while (*_interpreter->current != ';') {
@@ -1197,7 +1201,9 @@ int numDigits(uint64_t num) {
     return ans;
 }
 
+// parses the data type of any initialized variable
 struct data_type parseDataType(struct Interpreter *_interpreter, struct optional_slice type, bool effects, variable_type currType) {
+    // checks for integer, boolean, or string keywords and returns the corressponding struct of their data type
     if (operator1("integer", type.value) || currType == integer) {
         uint64_t v = expression(effects, _interpreter);
         struct data_type toReturn = {integer, '\0', v, false};
@@ -1210,7 +1216,7 @@ struct data_type parseDataType(struct Interpreter *_interpreter, struct optional
         char *ans = malloc(0);
         size_t maxSize = 0;
         size_t i = 0;
-
+        // if the data type is a string, 
         while (true) {
             if (consume("\"", _interpreter)) {;              
                 while (*_interpreter->current != '\"') {
@@ -1363,12 +1369,6 @@ bool statement(bool effects, struct Interpreter *_interpreter)
             return true;
         }
 
-        /*
-        if (!checkType(testid)) {
-            fail(_interpreter);
-        }
-        */
-
         struct optional_slice name = consume_identifier(_interpreter);
         int arrayIndex = -1;
 
@@ -1388,11 +1388,6 @@ bool statement(bool effects, struct Interpreter *_interpreter)
             if (effects)
             {
                 if (arrayIndex != -1) {
-                    
-                    /*
-                    uint64_t val = expression(effects, _interpreter);
-                    struct data_type value = {integer, "\0", val, false};
-                    */
 
                     // Determine global vs local scope
                     
@@ -1411,11 +1406,6 @@ bool statement(bool effects, struct Interpreter *_interpreter)
                         fail(_interpreter);
                     }
                 } else {
-
-                    /*
-                    uint64_t val = expression(effects, _interpreter);
-                    struct data_type value = {integer, "\0", val, false};
-                    */
 
                     // Determine global vs local scope
                     if (contains(id, _interpreter))
@@ -1680,11 +1670,6 @@ struct optional_int functionStatement(bool effects, struct Interpreter *_interpr
             if (effects)
             {
                 if (arrayIndex != -1) {
-                    
-                    /*
-                    uint64_t val = expression(effects, _interpreter);
-                    struct data_type value = {integer, "\0", val, false};
-                    */
 
                     // Determine global vs local scope
                     if (contains(id, _interpreter))
@@ -1945,15 +1930,15 @@ bool consumeBracket(const char *str, struct Interpreter *_interpreter)
 int main(int argc, const char *const *const argv)
 {
 
-    /*
+    
     if (argc != 2) {
         fprintf(stderr,"usage: %s <file name>\n",argv[0]);
         exit(1);
     }
-    */
+    
 
     // open the file
-    int fd = open("adityac.fun", O_RDONLY);
+    int fd = open(argv[1], O_RDONLY);
     if (fd < 0)
     {
         perror("open");
