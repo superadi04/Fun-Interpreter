@@ -20,3 +20,17 @@ for (integer i = 0; i <= 10; i = i + 1) {
     print(i)
 }
 ```
+
+## While Loops
+```python
+boolean test = true
+integer i = 0
+
+while(test) {
+    i = i + 1
+    
+    if (i > 10) {
+        test = !test
+    }
+}
+```
