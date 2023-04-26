@@ -22,7 +22,7 @@ f[1] = 1
 for(integer i = 2; i<=n; i = i + 1){
     if[i] = f[i-1] + f[i-2]
 }
-return f[n]
+print(f[n])
 ```
 
 ## While Loops
@@ -39,7 +39,7 @@ while(test) {
 }
 ```
 
-## Functions & Arrays
+## Functions
 
 ```python
 integer[10] array
