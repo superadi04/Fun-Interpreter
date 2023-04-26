@@ -34,3 +34,40 @@ while(test) {
     }
 }
 ```
+
+## Functions & Arrays
+
+'''python
+integer[10] array;
+
+array[0] = 10
+array[1] = 32
+array[2] = 100
+array[3] = 1231
+array[4] = 43242
+array[5] = 342242
+array[6] = 2343244
+array[7] = 2888899
+array[8] = 28888990
+array[9] = 909009000
+
+fun binarySearchRecursive(key) {
+    integer last = 9
+    integer first = 0
+
+    if (last>=first){  
+        int mid = first + (last - first) / 2;  
+
+        if (arr[mid] == key ){  
+            return true;  
+        }  
+        if (arr[mid] > key) {  
+            return binarySearch(arr, first, mid-1, key)
+        } else {  
+            return binarySearch(arr, mid+1, last, key)
+        }  
+    }  
+
+    return false;  
+}
+'''
