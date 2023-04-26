@@ -12,3 +12,11 @@ if (n % 2 == 0) {
     print("The number is odd.")
 }
 ```
+
+## For Loops
+
+```python
+for (integer i = 0; i <= 10; i = i + 1) {
+    print(i)
+}
+```
