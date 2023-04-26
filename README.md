@@ -3,7 +3,7 @@
 "Fun", a simple functional, turing-complete, pythonic, interpreted language with support for conditionals, functions, recursion types, arrays, and co-routines. Below are some examples:
 
 ## Conditionals
-'''python
+```python
 integer n = 90
 
 if (n % 2 == 0) {
@@ -11,15 +11,4 @@ if (n % 2 == 0) {
 } else {
     print("The number is odd.")
 }
-
-'''
-
-```ocaml
-let factorial n =
-	if == 0 n
-		1
-	* n factorial - n 1
-
-let main =
-    print factorial 7
 ```
