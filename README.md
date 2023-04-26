@@ -16,9 +16,13 @@ if (n % 2 == 0) {
 ## For Loops
 
 ```python
-for (integer i = 0; i <= 10; i = i + 1) {
-    print(i)
+integer f[n+2]
+f[0] = 0
+f[1] = 1
+for(integer i = 2; i<=n; i = i + 1){
+    if[i] = f[i-1] + f[i-2]
 }
+return f[n]
 ```
 
 ## While Loops
