@@ -38,7 +38,7 @@ while(test) {
 ## Functions & Arrays
 
 ```python
-integer[10] array;
+integer[10] array
 
 array[0] = 10
 array[1] = 32
