@@ -37,7 +37,7 @@ while(test) {
 
 ## Functions & Arrays
 
-'''python
+```python
 integer[10] array;
 
 array[0] = 10
@@ -70,4 +70,4 @@ fun binarySearchRecursive(key) {
 
     return false;  
 }
-'''
+```
