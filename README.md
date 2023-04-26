@@ -13,3 +13,13 @@ if (n % 2 == 0) {
 }
 
 '''
+
+```ocaml
+let factorial n =
+	if == 0 n
+		1
+	* n factorial - n 1
+
+let main =
+    print factorial 7
+```
